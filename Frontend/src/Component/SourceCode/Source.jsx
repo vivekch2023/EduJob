@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react';
 import { Code2, Download } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Helmet } from 'react-helmet-async';
+import URL_API from '../../api'; // ✅ apne path ke hisaab se update karo
 
 const SourceCodePage = () => {
   const [sourceCodes, setSourceCodes] = useState([]);
   const [filter, setFilter] = useState('All');
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/source-codes')
-      .then(res => res.json())
-      .then(data => setSourceCodes(data))
+    URL_API.get('api/source-codes')
+      .then(res => setSourceCodes(res.data))
       .catch(err => console.error('Failed to fetch source codes:', err));
   }, []);
 
@@ -43,6 +43,9 @@ const SourceCodePage = () => {
     container.appendChild(invokeScript);
   };
 
+  const filteredCodes = filter === 'All' ? sourceCodes : sourceCodes.filter(code => code.language === filter);
+  const languages = ['All', ...new Set(sourceCodes.map(item => item.language))];
+
   useEffect(() => {
     // Page top ad
     loadAd("ad-top");
@@ -55,10 +58,7 @@ const SourceCodePage = () => {
         loadAd(`ad-slot-${index}`);
       }
     });
-  });
-
-  const languages = ['All', ...new Set(sourceCodes.map(item => item.language))];
-  const filteredCodes = filter === 'All' ? sourceCodes : sourceCodes.filter(code => code.language === filter);
+  }, [filteredCodes]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-white via-gray-100 to-gray-200 dark:from-[#0f0f0f] dark:to-[#1a1a1a] px-6 py-16 md:px-12 lg:px-20 font-sans transition-colors">

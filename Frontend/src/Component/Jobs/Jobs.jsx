@@ -1,12 +1,20 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import { Briefcase, Calendar, ExternalLink } from "lucide-react";
+import URL_API from "../../api"; // axios instance file
 
 export default function JobsSection() {
   const [jobs, setJobs] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/jobs").then((res) => setJobs(res.data));
+    const fetchJobs = async () => {
+      try {
+        const res = await URL_API.get("/api/jobs");
+        setJobs(res.data);
+      } catch (error) {
+        console.error("Failed to fetch jobs:", error);
+      }
+    };
+    fetchJobs();
   }, []);
 
   return (
@@ -44,8 +52,11 @@ export default function JobsSection() {
             </a>
           </div>
         ))}
+
         {jobs.length === 0 && (
-          <p className="text-center text-gray-500 col-span-full">No jobs found.</p>
+          <p className="text-center text-gray-500 col-span-full">
+            No jobs found.
+          </p>
         )}
       </div>
     </section>
