@@ -1,0 +1,356 @@
+[
+  {
+    "id": "c1",
+    "title": "HTML",
+    "description": "HTML fundamentals & web structure",
+    "tests": [
+      {
+        "id": "t1",
+        "title": "HTML Basics - 5 Q",
+        "durationMinutes": 15,
+        "questions": [
+          {
+            "id": "q1",
+            "text": "What does HTML stand for?",
+            "options": [
+              { "id": "a", "text": "Hyperlinks and Text Markup Language" },
+              { "id": "b", "text": "Home Tool Markup Language" },
+              { "id": "c", "text": "Hyper Text Markup Language" },
+              { "id": "d", "text": "Hyper Text Markdown Language" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q2",
+            "text": "Which tag is used to create a hyperlink?",
+            "options": [
+              { "id": "a", "text": "<a>" },
+              { "id": "b", "text": "<link>" },
+              { "id": "c", "text": "<href>" },
+              { "id": "d", "text": "<url>" }
+            ],
+            "correctOptionId": "a"
+          },
+          {
+            "id": "q3",
+            "text": "Which tag is used for the largest heading?",
+            "options": [
+              { "id": "a", "text": "<h6>" },
+              { "id": "b", "text": "<heading>" },
+              { "id": "c", "text": "<h1>" },
+              { "id": "d", "text": "<head>" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q4",
+            "text": "What does the <br> tag do?",
+            "options": [
+              { "id": "a", "text": "Creates a line break" },
+              { "id": "b", "text": "Creates a paragraph" },
+              { "id": "c", "text": "Creates bold text" },
+              { "id": "d", "text": "Creates a horizontal line" }
+            ],
+            "correctOptionId": "a"
+          },
+          {
+            "id": "q5",
+            "text": "Which attribute specifies an image source?",
+            "options": [
+              { "id": "a", "text": "src" },
+              { "id": "b", "text": "href" },
+              { "id": "c", "text": "alt" },
+              { "id": "d", "text": "link" }
+            ],
+            "correctOptionId": "a"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c2",
+    "title": "CSS",
+    "description": "CSS styling, selectors, and animations",
+    "tests": [
+      {
+        "id": "t1",
+        "title": "CSS Basics - 5 Q",
+        "durationMinutes": 15,
+        "questions": [
+          {
+            "id": "q1",
+            "text": "What does CSS stand for?",
+            "options": [
+              { "id": "a", "text": "Creative Style Sheets" },
+              { "id": "b", "text": "Cascading Style Sheets" },
+              { "id": "c", "text": "Computer Style Sheets" },
+              { "id": "d", "text": "Colorful Style Sheets" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q2",
+            "text": "Which property is used to change the text color?",
+            "options": [
+              { "id": "a", "text": "font-color" },
+              { "id": "b", "text": "color" },
+              { "id": "c", "text": "text-color" },
+              { "id": "d", "text": "background-color" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q3",
+            "text": "Which CSS property controls the spacing between lines of text?",
+            "options": [
+              { "id": "a", "text": "letter-spacing" },
+              { "id": "b", "text": "line-height" },
+              { "id": "c", "text": "spacing" },
+              { "id": "d", "text": "text-spacing" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q4",
+            "text": "How do you select an element with id 'main' in CSS?",
+            "options": [
+              { "id": "a", "text": ".main" },
+              { "id": "b", "text": "#main" },
+              { "id": "c", "text": "*main" },
+              { "id": "d", "text": "main" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q5",
+            "text": "Which property is used to make the corners rounded?",
+            "options": [
+              { "id": "a", "text": "border-radius" },
+              { "id": "b", "text": "corner-radius" },
+              { "id": "c", "text": "round-corner" },
+              { "id": "d", "text": "radius" }
+            ],
+            "correctOptionId": "a"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c3",
+    "title": "JavaScript",
+    "description": "JavaScript basics and ES6+ features",
+    "tests": [
+      {
+        "id": "t1",
+        "title": "JS Fundamentals - 5 Q",
+        "durationMinutes": 15,
+        "questions": [
+          {
+            "id": "q1",
+            "text": "Which keyword is used to declare a variable in JavaScript?",
+            "options": [
+              { "id": "a", "text": "var" },
+              { "id": "b", "text": "let" },
+              { "id": "c", "text": "const" },
+              { "id": "d", "text": "All of the above" }
+            ],
+            "correctOptionId": "d"
+          },
+          {
+            "id": "q2",
+            "text": "What is the output of typeof null?",
+            "options": [
+              { "id": "a", "text": "null" },
+              { "id": "b", "text": "object" },
+              { "id": "c", "text": "undefined" },
+              { "id": "d", "text": "number" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q3",
+            "text": "Which method converts JSON to a JavaScript object?",
+            "options": [
+              { "id": "a", "text": "JSON.stringify()" },
+              { "id": "b", "text": "JSON.parse()" },
+              { "id": "c", "text": "JSON.convert()" },
+              { "id": "d", "text": "JSON.toObject()" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q4",
+            "text": "What does '===' operator check?",
+            "options": [
+              { "id": "a", "text": "Value equality" },
+              { "id": "b", "text": "Type equality" },
+              { "id": "c", "text": "Both value and type equality" },
+              { "id": "d", "text": "Neither" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q5",
+            "text": "Which function is used to delay execution in JavaScript?",
+            "options": [
+              { "id": "a", "text": "setTimeout()" },
+              { "id": "b", "text": "delay()" },
+              { "id": "c", "text": "wait()" },
+              { "id": "d", "text": "sleep()" }
+            ],
+            "correctOptionId": "a"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c4",
+    "title": "ReactJS",
+    "description": "React framework fundamentals",
+    "tests": [
+      {
+        "id": "t1",
+        "title": "React Basics - 5 Q",
+        "durationMinutes": 15,
+        "questions": [
+          {
+            "id": "q1",
+            "text": "What is JSX?",
+            "options": [
+              { "id": "a", "text": "JavaScript XML" },
+              { "id": "b", "text": "Java Syntax Extension" },
+              { "id": "c", "text": "Java Standard X" },
+              { "id": "d", "text": "None of the above" }
+            ],
+            "correctOptionId": "a"
+          },
+          {
+            "id": "q2",
+            "text": "Which hook is used to manage state in functional components?",
+            "options": [
+              { "id": "a", "text": "useEffect" },
+              { "id": "b", "text": "useState" },
+              { "id": "c", "text": "useContext" },
+              { "id": "d", "text": "useReducer" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q3",
+            "text": "How do you pass data from parent to child component?",
+            "options": [
+              { "id": "a", "text": "Props" },
+              { "id": "b", "text": "State" },
+              { "id": "c", "text": "Context" },
+              { "id": "d", "text": "Events" }
+            ],
+            "correctOptionId": "a"
+          },
+          {
+            "id": "q4",
+            "text": "What method is used to create React elements?",
+            "options": [
+              { "id": "a", "text": "React.createElement()" },
+              { "id": "b", "text": "React.buildElement()" },
+              { "id": "c", "text": "React.makeElement()" },
+              { "id": "d", "text": "React.generateElement()" }
+            ],
+            "correctOptionId": "a"
+          },
+          {
+            "id": "q5",
+            "text": "Which of the following is used for side effects in React?",
+            "options": [
+              { "id": "a", "text": "useState" },
+              { "id": "b", "text": "useEffect" },
+              { "id": "c", "text": "useRef" },
+              { "id": "d", "text": "useCallback" }
+            ],
+            "correctOptionId": "b"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c5",
+    "title": "Node.js",
+    "description": "Node.js runtime environment",
+    "tests": [
+      {
+        "id": "t1",
+        "title": "Node.js Basics - 5 Q",
+        "durationMinutes": 15,
+        "questions": [
+          {
+            "id": "q1",
+            "text": "Node.js is built on which JavaScript engine?",
+            "options": [
+              { "id": "a", "text": "SpiderMonkey" },
+              { "id": "b", "text": "Chakra" },
+              { "id": "c", "text": "V8" },
+              { "id": "d", "text": "JavaScriptCore" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q2",
+            "text": "Which module is used to create a web server in Node.js?",
+            "options": [
+              { "id": "a", "text": "http" },
+              { "id": "b", "text": "express" },
+              { "id": "c", "text": "fs" },
+              { "id": "d", "text": "net" }
+            ],
+            "correctOptionId": "a"
+          },
+          {
+            "id": "q3",
+            "text": "Which command initializes a Node.js project?",
+            "options": [
+              { "id": "a", "text": "node init" },
+              { "id": "b", "text": "npm init" },
+              { "id": "c", "text": "npm start" },
+              { "id": "d", "text": "node start" }
+            ],
+            "correctOptionId": "b"
+          },
+          {
+            "id": "q4",
+            "text": "Which of the following is NOT a Node.js core module?",
+            "options": [
+              { "id": "a", "text": "fs" },
+              { "id": "b", "text": "http" },
+              { "id": "c", "text": "express" },
+              { "id": "d", "text": "path" }
+            ],
+            "correctOptionId": "c"
+          },
+          {
+            "id": "q5",
+            "text": "What does npm stand for?",
+            "options": [
+              { "id": "a", "text": "Node Package Manager" },
+              { "id": "b", "text": "New Project Manager" },
+              { "id": "c", "text": "Node Project Module" },
+              { "id": "d", "text": "None of the above" }
+            ],
+            "correctOptionId": "a"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c6",
+    "title": "Node.js",
+    "description": "Node.js runtime environment",
+    "tests": [
+
+    ]
+  }
+
+]

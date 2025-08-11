@@ -1,0 +1,15 @@
+<svg width="300" height="100" viewBox="0 0 300 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="EduJobHub logo">
+  <!-- Graduation cap -->
+  <polygon points="50,30 100,10 150,30 100,50" fill="#4f46e5"></polygon>
+  <rect x="95" y="50" width="10" height="30" fill="#4f46e5"></rect>
+  
+  <!-- Briefcase -->
+  <rect x="170" y="30" width="60" height="40" rx="5" ry="5" fill="#2563eb"></rect>
+  <rect x="185" y="20" width="30" height="15" fill="#2563eb"></rect>
+  <line x1="185" y1="27.5" x2="215" y2="27.5" stroke="white" stroke-width="2"></line>
+  
+  <!-- Text -->
+  <text x="240" y="65" font-family="Poppins, sans-serif" font-size="24" fill="#1e293b" font-weight="700">
+    EduJobHub
+  </text>
+</svg>
