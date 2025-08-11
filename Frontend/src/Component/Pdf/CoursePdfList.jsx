@@ -1,146 +1,60 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { FileText, Lock, Download } from "lucide-react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { FiFileText } from "react-icons/fi";
+import { Helmet } from "react-helmet-async";
 
-export default function CoursePdfList() {
-  // ✅ If your route is "/pdfs/:id"
-  const { id: pdfId } = useParams();
-
-  const [course, setCourse] = useState(null);
-  const [activeTab, setActiveTab] = useState("free");
-
-  useEffect(() => {
-    if (!pdfId) {
-      console.error("No PDF ID provided in route.");
-      return;
-    }
-
-    fetch(`http://localhost:5000/api/pdfs/${pdfId}`)
-      .then(res => {
-        if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-        return res.json();
-      })
-      .then(data => setCourse(data))
-      .catch(err => console.error("Failed to load course:", err));
-  }, [pdfId]);
-
-  if (!course) {
-    return (
-      <div className="min-h-screen flex items-center justify-center text-gray-400 text-lg">
-        Loading...
-      </div>
-    );
-  }
-
-  const renderPdfs = (list, isPremium = false) => {
-    if (!list || list.length === 0) {
-      return (
-        <div className="text-center text-gray-400 text-sm mt-10">
-          {isPremium ? "No premium PDFs available." : "No free PDFs available."}
-        </div>
-      );
-    }
-
-    return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
-        {list.map((pdf, i) => (
-          <motion.div
-            key={i}
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3, delay: i * 0.05 }}
-            className={`rounded-xl p-6 border border-white/20 shadow-md backdrop-blur-lg transition-all ${
-              isPremium
-                ? "bg-gradient-to-br from-yellow-100/40 to-yellow-50/20"
-                : "bg-gradient-to-br from-indigo-100/30 to-white/20"
-            }`}
-          >
-            <div className="flex items-start gap-3">
-              {isPremium ? (
-                <Lock className="text-yellow-600 w-5 h-5 mt-1" />
-              ) : (
-                <FileText className="text-indigo-600 w-5 h-5 mt-1" />
-              )}
-              <div className="flex-1">
-                <h4 className="font-semibold text-gray-800">{pdf.title}</h4>
-                {isPremium && (
-                  <p className="text-sm text-yellow-700 mt-1">
-                    Price: ₹{pdf.price}
-                  </p>
-                )}
-              </div>
-            </div>
-            <div className="mt-4">
-              {isPremium ? (
-                <button className="w-full bg-yellow-500 text-white py-2 rounded-lg hover:bg-yellow-600 transition text-sm">
-                  Buy Now
-                </button>
-              ) : (
-                <a
-                  href={pdf.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-indigo-600 hover:underline text-sm"
-                >
-                  <Download className="w-4 h-4" />
-                  Download
-                </a>
-              )}
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    );
-  };
-
+export default function PdfComingSoon() {
   return (
-    <div className="min-h-screen bg-gradient-to-tr from-purple-100 via-white to-indigo-100 py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <motion.h1
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-bold text-gray-800"
+    <>
+      <Helmet>
+        <title>PDF Section Coming Soon - EduJobHub</title>
+        <meta
+          name="description"
+          content="The PDF section on EduJobHub is coming soon! We’re preparing high-quality premium PDFs to help you with exam preparation. Stay tuned!"
+        />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href="https://yourdomain.com/pdf-coming-soon" />
+      </Helmet>
+
+      <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-white px-6 text-gray-800 font-sans select-none">
+
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="bg-white rounded-3xl shadow-xl p-12 max-w-lg text-center border border-indigo-200"
+          aria-live="polite"
+          role="main"
+        >
+          <motion.div 
+            className="text-indigo-600 mb-6 inline-block"
+            animate={{ rotate: [0, 15, -15, 15, -15, 0] }}
+            transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+            aria-hidden="true"
           >
-            {course.name} PDFs
-          </motion.h1>
-          <p className="text-gray-500 mt-3 max-w-xl mx-auto">
-            Explore curated learning resources for your course.
+            <FiFileText className="w-20 h-20 mx-auto" />
+          </motion.div>
+
+          <h1 className="text-4xl font-extrabold mb-4 tracking-tight text-indigo-800">
+            PDF Section Coming Soon
+          </h1>
+          <p className="text-lg text-gray-600 mb-8 leading-relaxed">
+            We are working hard to bring you high-quality PDFs soon! Stay tuned for updates and premium content.
           </p>
-        </div>
 
-        {/* Tabs */}
-        <div className="flex justify-center gap-4 mb-10">
-          <button
-            onClick={() => setActiveTab("free")}
-            className={`px-5 py-2 rounded-full text-sm font-medium shadow-sm transition-all ${
-              activeTab === "free"
-                ? "bg-indigo-600 text-white"
-                : "bg-white text-gray-700 border border-indigo-200"
-            }`}
+          <Link
+            to="/"
+            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-8 py-3 rounded-full shadow-md transition focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            aria-label="Go back to homepage"
           >
-            Free PDFs
-          </button>
-          <button
-            onClick={() => setActiveTab("premium")}
-            className={`px-5 py-2 rounded-full text-sm font-medium shadow-sm transition-all ${
-              activeTab === "premium"
-                ? "bg-yellow-500 text-white"
-                : "bg-white text-gray-700 border border-yellow-200"
-            }`}
-          >
-            Premium PDFs
-          </button>
-        </div>
+            ← Back to Home
+          </Link>
+        </motion.div>
 
-        {/* PDF Content */}
-        {activeTab === "free"
-          ? renderPdfs(course.free)
-          : renderPdfs(course.premium, true)}
+        <footer className="mt-16 text-xs text-gray-400 select-text">
+          © 2025 EduJobHub. All rights reserved.
+        </footer>
       </div>
-    </div>
+    </>
   );
 }

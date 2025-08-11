@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useEffect, useState, useRef } from "react";
 
 export default function Timer({ duration, onTimeUp }) {

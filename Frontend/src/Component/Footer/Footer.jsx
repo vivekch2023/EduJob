@@ -2,13 +2,6 @@ function Footer() {
   return (
     <footer className="bg-purple-900 text-white py-12 px-6 md:px-20 mt-20">
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-left">
-        {/* Brand Section
-    <div>
-      <h2 className="text-2xl font-bold text-white mb-4">EduJobHub</h2>
-      <p className="text-sm text-gray-300">
-        Your one-stop solution for job alerts, study materials, and online tests — empowering students & job seekers.
-      </p>
-    </div> */}
 
         {/* word it company carrer site */}
         <div>
