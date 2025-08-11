@@ -1,64 +1,100 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
+// ✅ Backend URL from environment variable (works for dev/prod)
+const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000";
+
 const AdminSourceCodePanel = () => {
   const [codes, setCodes] = useState([]);
-  const [form, setForm] = useState({ title: "", language: "", description: "", downloadLink: "" });
+  const [form, setForm] = useState({
+    title: "",
+    language: "",
+    description: "",
+    downloadLink: "",
+  });
   const [editingId, setEditingId] = useState(null);
   const [activeTab, setActiveTab] = useState("list"); // 'upload' or 'list'
 
-  // Fetch All Codes
+  // 📌 Fetch All Codes
   const fetchCodes = async () => {
-    const res = await axios.get("http://localhost:5000/api/source-codes");
-    setCodes(res.data);
+    try {
+      const res = await axios.get(`${API_BASE}/api/source-codes`);
+      setCodes(res.data);
+    } catch (err) {
+      console.error("Error fetching codes:", err);
+    }
   };
 
   useEffect(() => {
     fetchCodes();
   }, []);
 
-  // Add or Update Code
+  // 📌 Add or Update Code
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (editingId) {
-      await axios.put(`http://localhost:5000/api/source-codes/${editingId}`, form);
-      setEditingId(null);
-    } else {
-      await axios.post("http://localhost:5000/api/source-codes", form);
+    try {
+      if (editingId) {
+        await axios.put(`${API_BASE}/api/source-codes/${editingId}`, form);
+        setEditingId(null);
+      } else {
+        await axios.post(`${API_BASE}/api/source-codes`, form);
+      }
+      setForm({ title: "", language: "", description: "", downloadLink: "" });
+      fetchCodes();
+      setActiveTab("list");
+    } catch (err) {
+      console.error("Error saving code:", err);
     }
-    setForm({ title: "", language: "", description: "", downloadLink: "" });
-    fetchCodes();
-    setActiveTab("list");
   };
 
-  // Delete
+  // 📌 Delete
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:5000/api/source-codes/${id}`);
-    fetchCodes();
+    if (!window.confirm("Are you sure you want to delete this code?")) return;
+    try {
+      await axios.delete(`${API_BASE}/api/source-codes/${id}`);
+      fetchCodes();
+    } catch (err) {
+      console.error("Error deleting code:", err);
+    }
   };
 
-  // Edit
+  // 📌 Edit
   const handleEdit = (code) => {
-    setForm(code);
+    setForm({
+      title: code.title,
+      language: code.language,
+      description: code.description,
+      downloadLink: code.downloadLink,
+    });
     setEditingId(code._id);
     setActiveTab("upload");
   };
 
   return (
     <div className="max-w-5xl mx-auto py-12 px-4 font-sans">
-      <h1 className="text-4xl font-bold text-center mb-10 text-indigo-800">⚙️ Admin Panel - Source Code Manager</h1>
+      <h1 className="text-4xl font-bold text-center mb-10 text-indigo-800">
+        ⚙️ Admin Panel - Source Code Manager
+      </h1>
 
       {/* Tab Switch Buttons */}
       <div className="flex justify-center mb-8 space-x-4">
         <button
           onClick={() => setActiveTab("upload")}
-          className={`px-6 py-2 rounded-full font-semibold ${activeTab === "upload" ? "bg-indigo-600 text-white" : "bg-gray-200"}`}
+          className={`px-6 py-2 rounded-full font-semibold ${
+            activeTab === "upload"
+              ? "bg-indigo-600 text-white"
+              : "bg-gray-200"
+          }`}
         >
           ➕ Upload Code
         </button>
         <button
           onClick={() => setActiveTab("list")}
-          className={`px-6 py-2 rounded-full font-semibold ${activeTab === "list" ? "bg-indigo-600 text-white" : "bg-gray-200"}`}
+          className={`px-6 py-2 rounded-full font-semibold ${
+            activeTab === "list"
+              ? "bg-indigo-600 text-white"
+              : "bg-gray-200"
+          }`}
         >
           📄 View Codes
         </button>
@@ -66,7 +102,10 @@ const AdminSourceCodePanel = () => {
 
       {/* Upload Section */}
       {activeTab === "upload" && (
-        <form onSubmit={handleSubmit} className="space-y-4 bg-white p-6 rounded-xl shadow-lg border mb-10">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 bg-white p-6 rounded-xl shadow-lg border mb-10"
+        >
           <input
             type="text"
             placeholder="Title"
@@ -86,7 +125,9 @@ const AdminSourceCodePanel = () => {
           <textarea
             placeholder="Description"
             value={form.description}
-            onChange={(e) => setForm({ ...form, description: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, description: e.target.value })
+            }
             className="w-full border p-3 rounded-md"
             rows={4}
             required
@@ -95,11 +136,16 @@ const AdminSourceCodePanel = () => {
             type="text"
             placeholder="Download Link"
             value={form.downloadLink}
-            onChange={(e) => setForm({ ...form, downloadLink: e.target.value })}
+            onChange={(e) =>
+              setForm({ ...form, downloadLink: e.target.value })
+            }
             className="w-full border p-3 rounded-md"
             required
           />
-          <button type="submit" className="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition">
+          <button
+            type="submit"
+            className="bg-indigo-600 text-white px-6 py-2 rounded-md hover:bg-indigo-700 transition"
+          >
             {editingId ? "Update Code" : "Add Code"}
           </button>
         </form>
@@ -120,12 +166,24 @@ const AdminSourceCodePanel = () => {
             </thead>
             <tbody>
               {codes.map((code) => (
-                <tr key={code._id} className="border-t hover:bg-gray-50 transition">
+                <tr
+                  key={code._id}
+                  className="border-t hover:bg-gray-50 transition"
+                >
                   <td className="p-3">{code.title}</td>
                   <td className="p-3">{code.language}</td>
-                  <td className="p-3">{code.description.slice(0, 40)}...</td>
                   <td className="p-3">
-                    <a href={code.downloadLink} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">
+                    {code.description.length > 40
+                      ? `${code.description.slice(0, 40)}...`
+                      : code.description}
+                  </td>
+                  <td className="p-3">
+                    <a
+                      href={code.downloadLink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 underline"
+                    >
                       Download
                     </a>
                   </td>
@@ -147,7 +205,10 @@ const AdminSourceCodePanel = () => {
               ))}
               {codes.length === 0 && (
                 <tr>
-                  <td colSpan="5" className="text-center p-4 text-gray-500">
+                  <td
+                    colSpan="5"
+                    className="text-center p-4 text-gray-500"
+                  >
                     No source codes found.
                   </td>
                 </tr>

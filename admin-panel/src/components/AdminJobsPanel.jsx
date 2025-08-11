@@ -1,18 +1,32 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Pencil, Trash2, Briefcase, Link2, Calendar, Building2 } from "lucide-react";
+import {
+  Pencil,
+  Trash2,
+  Briefcase,
+  Link2,
+  Calendar,
+  Building2
+} from "lucide-react";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 
 export default function AdminJobsPanel() {
-  const [form, setForm] = useState({ company: "", title: "", applyLink: "", lastDate: "" });
+  const [form, setForm] = useState({
+    company: "",
+    title: "",
+    applyLink: "",
+    lastDate: ""
+  });
   const [editingId, setEditingId] = useState(null);
   const [jobs, setJobs] = useState([]);
   const [activeTab, setActiveTab] = useState("add");
 
+  const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
   const fetchJobs = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/jobs");
+      const res = await axios.get(`${API_BASE}/api/jobs`);
       setJobs(res.data);
     } catch (err) {
       console.error("Error fetching jobs:", err);
@@ -27,11 +41,11 @@ export default function AdminJobsPanel() {
     e.preventDefault();
     try {
       if (editingId) {
-        await axios.put(`http://localhost:5000/api/jobs/${editingId}`, form);
+        await axios.put(`${API_BASE}/api/jobs/${editingId}`, form);
         toast.success("✅ Job updated successfully");
         setEditingId(null);
       } else {
-        await axios.post("http://localhost:5000/api/jobs", form);
+        await axios.post(`${API_BASE}/api/jobs`, form);
         toast.success("🎉 Job added successfully");
       }
       setForm({ company: "", title: "", applyLink: "", lastDate: "" });
@@ -46,12 +60,12 @@ export default function AdminJobsPanel() {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this job?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/jobs/${id}`);
-      alert("🗑️ Job deleted successfully");
+      await axios.delete(`${API_BASE}/api/jobs/${id}`);
+      toast.success("🗑️ Job deleted successfully");
       fetchJobs();
     } catch (err) {
       console.error("Error deleting job:", err);
-      alert("❌ Failed to delete job");
+      toast.error("❌ Failed to delete job");
     }
   };
 
@@ -65,7 +79,7 @@ export default function AdminJobsPanel() {
   return (
     <div className="max-w-6xl mx-auto px-6 py-14 font-sans">
       <ToastContainer position="top-right" autoClose={2500} />
-      
+
       <h1 className="text-4xl font-bold text-center text-purple-700 mb-12">
         Admin – Job Management 💼
       </h1>
@@ -107,7 +121,9 @@ export default function AdminJobsPanel() {
                 type="text"
                 placeholder="Company Name"
                 value={form.company}
-                onChange={(e) => setForm({ ...form, company: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, company: e.target.value })
+                }
                 className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-purple-500"
                 required
               />
@@ -131,7 +147,9 @@ export default function AdminJobsPanel() {
                 type="url"
                 placeholder="Apply Link"
                 value={form.applyLink}
-                onChange={(e) => setForm({ ...form, applyLink: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, applyLink: e.target.value })
+                }
                 className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-purple-500"
                 required
               />
@@ -142,7 +160,9 @@ export default function AdminJobsPanel() {
               <input
                 type="date"
                 value={form.lastDate}
-                onChange={(e) => setForm({ ...form, lastDate: e.target.value })}
+                onChange={(e) =>
+                  setForm({ ...form, lastDate: e.target.value })
+                }
                 className="w-full pl-10 pr-4 py-3 border rounded-lg focus:outline-purple-500"
                 required
               />
@@ -176,7 +196,9 @@ export default function AdminJobsPanel() {
                 <tr key={job._id} className="border-t hover:bg-gray-50">
                   <td className="p-4">{job.company}</td>
                   <td className="p-4">{job.title}</td>
-                  <td className="p-4 text-red-600 font-medium">{job.lastDate}</td>
+                  <td className="p-4 text-red-600 font-medium">
+                    {job.lastDate}
+                  </td>
                   <td className="p-4 text-blue-600 max-w-xs truncate">
                     <a
                       href={job.applyLink}
