@@ -98,7 +98,7 @@ function Footer() {
       {/* Bottom Section */}
       <div className="border-t border-purple-700 mt-10 pt-6 text-center text-sm text-gray-400">
         <p>&copy; {new Date().getFullYear()} EduJobHub. All rights reserved.</p>
-        <p>Designed & Developed by Vivek Chauhan</p>
+        <p>Designed & Developed by <a href="https://www.zetavextech.in/">Zetavex Tech Solutions</a></p>
       </div>
     </footer>
   );
