@@ -174,17 +174,17 @@ export default function EduJobHubLandingPage() {
             viewport={{ once: true }}
           >
             <img
-              src="https://cdn3.iconfinder.com/data/icons/web-development-168/512/Man_Web_Developer3.png"
+              src="https://www.zetavextech.in/logo.png"
               alt="Vivek Chauhan"
               className="w-40 h-40 md:w-48 md:h-48 rounded-full object-cover border border-gray-300 shadow-sm"
             />
 
             <div className="text-center md:text-left">
               <h4 className="text-2xl md:text-3xl font-semibold text-gray-800">Zetavex Tech Solutions</h4>
-              <p className="text-gray-600 mt-1">Full Stack Developer · Founder, EduJobHub</p>
+              <p className="text-gray-600 mt-1">Your Partner in Digital Transformation</p>
 
               <p className="text-gray-700 mt-4 leading-relaxed max-w-xl">
-                I created EduJobHub to simplify student career growth — verified job listings, premium resources, and MCQs under one clean, student-friendly platform.
+               We build modern digital solutions that help businesses grow — from websites and apps to custom software and IT services.
               </p>
 
               <div className="mt-6 flex flex-wrap justify-center md:justify-start gap-8">
